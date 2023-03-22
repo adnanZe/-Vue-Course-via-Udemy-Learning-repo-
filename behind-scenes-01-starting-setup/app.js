@@ -14,41 +14,40 @@ const app = Vue.createApp({
       this.message = this.$refs.userText.value;
     },
   },
+
+  beforeCreate() {
+    console.log("before create");
+  },
+
+  created() {
+    console.log("created");
+  },
+
+  beforeMount() {
+    console.log("before mount");
+  },
+
+  mounted() {
+    console.log("mounted");
+  },
+
+  beforeUpdate() {
+    console.log("before update");
+  },
+
+  updated() {
+    console.log("updated");
+  },
+
+  beforeUnmount() {
+    console.log("before unmount");
+  },
+
+  unmounted() {
+    console.log("unmount");
+  },
 });
 
 app.mount("#app");
 
-const app2 = Vue.createApp({
-  template: `
-        <p>{{favoriteMeal}}</p>
-  `,
-  data() {
-    return {
-      favoriteMeal: "pizza",
-    };
-  },
-});
-
-app2.mount("#app2");
-
-//...
-const data = {
-  message: "Hello!",
-  longMessage: "hello world!",
-};
-
-const handler = {
-  set(target, key, value) {
-    if (key === "message") {
-      target.longMessage = value + " World!";
-    }
-
-    target.message = value;
-  },
-};
-
-const proxy = new Proxy(data, handler);
-
-proxy.message = "Hello!!!";
-
-console.log(proxy.longMessage);
+setTimeout(() => app.unmount(), 3000);
