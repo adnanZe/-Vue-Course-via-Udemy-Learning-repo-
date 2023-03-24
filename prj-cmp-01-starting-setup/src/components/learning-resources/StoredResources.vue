@@ -16,7 +16,7 @@ export default {
   components: {
     LearningResources,
   },
-  props: {
+  inject: {
     resources: {
       type: Object,
       required: true,
