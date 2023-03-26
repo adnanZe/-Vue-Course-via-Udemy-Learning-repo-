@@ -99,6 +99,9 @@
       </div>
     </div>
     <div class="form-control">
+      <rating-control></rating-control>
+    </div>
+    <div class="form-control">
       <input
         type="checkbox"
         name="confirm-terms"
@@ -113,7 +116,10 @@
   </form>
 </template>
 <script>
+import RatingControl from './RatingControl.vue';
+
 export default {
+  components: { RatingControl },
   data() {
     return {
       userName: '',
@@ -127,22 +133,22 @@ export default {
   },
   methods: {
     submitForm() {
-      // console.log('username ' + this.userName);
-      // this.userName = '';
-      // console.log('userage');
-      // console.log(this.userAge);
-      // console.log(31);
-      // console.log(this.$refs.ageInput.value);
-      // this.userAge = null;
-      // console.log(this.referrer);
-      // this.referrer = 'wom';
-      // console.log(this.how);
-      // console.log(this.interest);
-      // this.interest = [];
-      // this.how = null;
-      // console.log('Confirm?');
-      // console.log(this.confirm);
-      // this.confirm = false;
+      console.log('username ' + this.userName);
+      this.userName = '';
+      console.log('userage');
+      console.log(this.userAge);
+      console.log(31);
+      console.log(this.$refs.ageInput.value);
+      this.userAge = null;
+      console.log(this.referrer);
+      this.referrer = 'wom';
+      console.log(this.how);
+      console.log(this.interest);
+      this.interest = [];
+      this.how = null;
+      console.log('Confirm?');
+      console.log(this.confirm);
+      this.confirm = false;
     },
     validateInput() {
       if (this.userName === '') {
