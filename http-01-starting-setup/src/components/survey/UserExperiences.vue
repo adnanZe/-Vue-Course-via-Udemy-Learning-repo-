@@ -33,6 +33,10 @@ export default {
     };
   },
 
+  mounted() {
+    this.loadExperiences();
+  },
+
   methods: {
     loadExperiences() {
       fetch(
