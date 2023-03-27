@@ -7,9 +7,10 @@ import App from './App.vue';
 const router = createRouter({
   history: createWebHashHistory(),
   routes: [
-    { path: '/', component: TeamsList },
+    { path: '/teams', component: TeamsList },
     { path: '/users', component: UsersList },
   ],
+  linkActiveClass: 'active',
 });
 
 const app = createApp(App);
