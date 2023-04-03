@@ -30,7 +30,7 @@ export default {
     addTen() {
       // this.$store.dispatch('increase', { value: 10 });
       this.$store.dispatch({
-        type: 'increase',
+        type: 'numbers/increase',
         value: 1,
       });
     },
