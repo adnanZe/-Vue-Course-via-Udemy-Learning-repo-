@@ -4,6 +4,6 @@ export default {
   },
 
   logout(context) {
-    context.commit('setAuth', { isAuth: true });
+    context.commit('setAuth', { isAuth: false });
   },
 };
