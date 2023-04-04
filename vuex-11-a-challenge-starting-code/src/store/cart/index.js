@@ -5,7 +5,11 @@ import cartActions from './actions';
 export default {
   namespaced: true,
   state() {
-    return {};
+    return {
+      items: [],
+      total: 0,
+      qty: 0,
+    };
   },
   mutations: cartMutations,
   actions: cartActions,
