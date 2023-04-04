@@ -1,1 +1,5 @@
-export default {};
+export default {
+  getIsAuth(state) {
+    return state.isAuth;
+  },
+};

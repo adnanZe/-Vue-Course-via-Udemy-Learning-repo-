@@ -5,7 +5,9 @@ import authActions from './actions';
 export default {
   namespaced: true,
   state() {
-    return {};
+    return {
+      isAuth: false,
+    };
   },
   mutations: authMutations,
   actions: authActions,
