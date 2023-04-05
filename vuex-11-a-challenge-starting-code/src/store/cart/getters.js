@@ -4,7 +4,7 @@ export default {
   },
 
   getCart(state) {
-    return state.cart;
+    return state.items;
   },
 
   getQty(state) {

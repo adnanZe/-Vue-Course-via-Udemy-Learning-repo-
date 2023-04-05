@@ -1,28 +1,30 @@
 export default {
   addProductToCart(state, payload) {
+    const productData = payload;
     const productInCartIndex = state.items.findIndex(
-      (ci) => ci.productId === payload.productData.id
+      (ci) => ci.productId === productData.id
     );
 
     if (productInCartIndex >= 0) {
       state.items[productInCartIndex].qty++;
     } else {
       const newItem = {
-        productId: payload.productData.id,
-        title: payload.productData.title,
-        image: payload.productData.image,
-        price: payload.productData.price,
+        productId: productData.productId,
+        title: productData.title,
+        image: productData.image,
+        price: productData.price,
         qty: 1,
       };
       state.items.push(newItem);
     }
     state.qty++;
-    state.total += payload.productData.price;
+    state.total += productData.price;
   },
 
   removeProductFromCart(state, payload) {
+    const prodId = payload.productId;
     const productInCartIndex = state.items.findIndex(
-      (cartItem) => cartItem.productId === payload.prodId
+      (cartItem) => cartItem.productId === prodId
     );
     const prodData = state.items[productInCartIndex];
     state.items.splice(productInCartIndex, 1);
