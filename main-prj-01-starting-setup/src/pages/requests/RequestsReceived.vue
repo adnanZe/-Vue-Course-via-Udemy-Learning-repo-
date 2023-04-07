@@ -4,16 +4,34 @@
       <header>
         <h2>Requests Received</h2>
       </header>
-      <ul></ul>
-      <h3>You haven't received any requests yet!</h3>
+      <ul v-if="hasRequests">
+        <request-item
+          v-for="req in receivedRequests"
+          :key="req.id"
+          :email="req.userEmail"
+          :message="req.message"
+        ></request-item>
+      </ul>
+      <h3 v-if="!hasRequests">You haven't received any requests yet!</h3>
     </base-card>
   </section>
 </template>
 
 <script>
+import RequestItem from '../../components/requests/RequestItem.vue';
+
 export default {
+  components: {
+    RequestItem,
+  },
   computed: {
-    receivedRequests() {},
+    receivedRequests() {
+      return this.$store.getters['requests/requests'];
+    },
+
+    hasRequests() {
+      return this.$store.getters['requests/hasRequests'];
+    },
   },
 };
 </script>
