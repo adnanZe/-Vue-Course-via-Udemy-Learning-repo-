@@ -1,12 +1,14 @@
 export default {
   contactCoach(context, payload) {
     const newRequest = {
-      id: new Date().toISOString(),
       coachId: payload.coachId,
       userEmail: payload.email,
       message: payload.message,
     };
 
+    fetch(
+      'https://vue-find-mycoach-default-rtdb.asia-southeast1.firebasedatabase.app/'
+    );
     context.commit('addRequest', newRequest);
   },
 };
