@@ -5,6 +5,20 @@ export default {
       mode: 'login',
     });
   },
+
+  tryLogin(context) {
+    const token = localStorage.getItem('token');
+    const userId = localStorage.getItem('userId');
+
+    if (token && userId) {
+      context.commit('setUser', {
+        token,
+        userId,
+        tokenExpiration: null,
+      });
+    }
+  },
+
   async signup(context, payload) {
     return context.dispatch('auth', {
       ...payload,
@@ -41,7 +55,7 @@ export default {
     }
 
     localStorage.setItem('token', responseData.idToken);
-    localStorage.setItem('token', responseData.localId);
+    localStorage.setItem('userId', responseData.localId);
 
     context.commit('setUser', {
       token: responseData.idToken,
