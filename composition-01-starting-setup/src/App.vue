@@ -1,17 +1,17 @@
 <template>
   <section class="container">
-    <h2>{{ userName }}</h2>
+    <h2>{{ uName }}</h2>
   </section>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      userName: 'Maximilian',
-    };
-  },
-};
+<script setup>
+import { ref } from 'vue';
+
+const uName = ref('Adnan');
+
+setTimeout(() => {
+  uName.value = 'Zecheria';
+}, 2000);
 </script>
 
 <style>
