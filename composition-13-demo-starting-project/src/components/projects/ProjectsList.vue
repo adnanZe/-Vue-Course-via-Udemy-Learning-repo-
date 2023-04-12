@@ -21,7 +21,7 @@
 </template>
 
 <script setup>
-import { defineProps, ref, computed, watch } from 'vue';
+import { defineProps, ref, computed, watch, toRefs } from 'vue';
 import ProjectItem from './ProjectItem.vue';
 
 const props = defineProps(['user']);
@@ -43,14 +43,18 @@ const hasProjects = computed(
 
 const updateSearch = (val) => (enteredSearchTerm.value = val);
 
-watch([enteredSearchTerm, props.user], (val) => {
+watch(enteredSearchTerm, (val) => {
   setTimeout(() => {
-    if (val[0] === enteredSearchTerm.value) {
-      activeSearchTerm.value = val[0];
+    if (val === enteredSearchTerm.value) {
+      activeSearchTerm.value = val;
     }
   }, 300);
+});
 
-  //TODO
+const { user } = toRefs(props);
+
+watch(user, () => {
+  enteredSearchTerm.value = '';
 });
 </script>
 

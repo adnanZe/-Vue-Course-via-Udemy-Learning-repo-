@@ -6,13 +6,13 @@
 </template>
 
 <script setup>
-import { ref, reactive } from 'vue';
+import { ref } from 'vue';
 import USER_DATA from './dummy-data.js';
 import UserList from './components/users/UserList.vue';
 import ProjectsList from './components/projects/ProjectsList.vue';
 
 const selectedUser = ref(null);
-const activeUsers = reactive(USER_DATA);
+const activeUsers = USER_DATA;
 
 const selectUser = (uid) => {
   selectedUser.value = activeUsers.find((usr) => usr.id === uid);

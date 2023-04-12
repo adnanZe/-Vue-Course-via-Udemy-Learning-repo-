@@ -26,28 +26,42 @@
 </template>
 
 <script setup>
-import { defineProps, ref, computed, watch } from 'vue';
+import { defineProps, ref, computed, watch, defineEmits } from 'vue';
 import UserItem from './UserItem.vue';
 
 const props = defineProps(['users']);
+defineEmits(['list-projects']);
 
 const enteredSearchTerm = ref('');
 const activeSearchTerm = ref('');
-const sorting = ref(null);
 
 const availableUsers = computed(() => {
   let users = [];
   if (activeSearchTerm.value) {
-    users = users.filter((usr) =>
-      usr.fullName.includes(activeSearchTerm.value)
+    users = props.users.filter((usr) =>
+      usr.fullName.toLowerCase().includes(activeSearchTerm.value)
     );
-  } else if (users) {
+  } else if (props.users) {
     users = props.users;
   }
   return users;
 });
 
-const displayedUsers = () => {
+const updateSearch = (val) => {
+  enteredSearchTerm.value = val;
+};
+
+watch(enteredSearchTerm, (val) => {
+  setTimeout(() => {
+    if (val === enteredSearchTerm.value) {
+      activeSearchTerm.value = val;
+    }
+  }, 300);
+});
+
+const sorting = ref(null);
+
+const displayedUsers = computed(() => {
   if (!sorting.value) {
     return availableUsers.value;
   }
@@ -62,22 +76,11 @@ const displayedUsers = () => {
       return 1;
     }
   });
-};
+});
 
-const updateSearch = (val) => {
-  enteredSearchTerm.value = val;
-};
 const sort = (mode) => {
   sorting.value = mode;
 };
-
-watch(enteredSearchTerm, (val) => {
-  setTimeout(() => {
-    if (val === this.enteredSearchTerm) {
-      activeSearchTerm.value = val;
-    }
-  }, 300);
-});
 </script>
 
 <style scoped>
