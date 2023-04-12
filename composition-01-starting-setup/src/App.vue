@@ -4,8 +4,8 @@
     <h3>{{ age }}</h3>
     <button @click="setNewAge">Change Age</button>
     <div>
-      <input type="text" placeholder="First Name" @input="setFirstName" />
-      <input type="text" placeholder="Last Name" @input="setLastName" />
+      <input type="text" placeholder="First Name" v-model="firstName" />
+      <input type="text" placeholder="Last Name" v-model="lastName" />
     </div>
   </section>
 </template>
@@ -28,19 +28,14 @@ export default {
       return firstName.value + ' ' + lastName.value;
     });
 
-    const setNewAge = () => {
-      uAge.value = 22;
-    };
-
-    const setFirstName = (event) => (firstName.value = event.target.value);
-    const setLastName = (event) => (lastName.value = event.target.value);
+    const setNewAge = () => (uAge.value = 22);
 
     return {
       user: uName,
       age: uAge,
       setNewAge,
-      setFirstName,
-      setLastName,
+      firstName,
+      lastName,
     };
   },
 };
