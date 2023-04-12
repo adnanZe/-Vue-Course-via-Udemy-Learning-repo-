@@ -19,33 +19,53 @@
   </section>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      availableFunds: 100,
-      currentExpenses: 0,
-      enteredExpense: 0,
-    };
-  },
-  computed: {
-    remainingFunds() {
-      return this.availableFunds - this.currentExpenses;
-    },
-  },
-  methods: {
-    addExpense() {
-      this.currentExpenses += this.enteredExpense;
-    },
-  },
-  watch: {
-    remainingFunds(val) {
-      if (val < 0) {
-        alert('You are broke!');
-      }
-    },
-  },
+<script setup>
+import { ref, computed, watch } from 'vue';
+
+const availableFunds = ref(100);
+const currentExpenses = ref(0);
+const enteredExpense = ref(0);
+
+const remainingFunds = computed(
+  () => availableFunds.value - currentExpenses.value
+);
+
+watch(remainingFunds, (val) => {
+  if (val < 0) {
+    alert('You are broke!');
+  }
+});
+
+const addExpense = () => {
+  currentExpenses.value += enteredExpense.value;
 };
+
+// export default {
+//   data() {
+//     return {
+//       availableFunds: 100,
+//       currentExpenses: 0,
+//       enteredExpense: 0,
+//     };
+//   },
+//   computed: {
+//     remainingFunds() {
+//       return this.availableFunds - this.currentExpenses;
+//     },
+//   },
+//   methods: {
+//     addExpense() {
+//       this.currentExpenses += this.enteredExpense;
+//     },
+//   },
+//   watch: {
+//     remainingFunds(val) {
+//       if (val < 0) {
+//         alert('You are broke!');
+//       }
+//     },
+//   },
+// };
 </script>
 
 <style>
