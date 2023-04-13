@@ -13,16 +13,13 @@
   </dialog>
 </template>
 
-<script>
-export default {
-  props: ['title'],
-  emits: ['close'],
-  methods: {
-    closeDialog() {
-      this.$emit('close');
-    },
-  },
-};
+<script setup>
+import { defineProps, defineEmits } from 'vue';
+
+defineProps(['title']);
+const emits = defineEmits(['close']);
+
+const closeDialog = () => emits('close');
 </script>
 
 <style scoped>

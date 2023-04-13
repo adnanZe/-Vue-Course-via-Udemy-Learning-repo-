@@ -5,16 +5,9 @@
   </main>
 </template>
 
-<script>
+<script setup>
 import AddUser from './components/AddUser.vue';
 import DeleteUser from './components/DeleteUser.vue';
-
-export default {
-  components: {
-    AddUser,
-    DeleteUser,
-  },
-};
 </script>
 
 <style>
