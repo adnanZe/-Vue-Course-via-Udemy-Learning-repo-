@@ -12,39 +12,32 @@
       </div>
       <div>
         <label for="description">Description</label>
-        <textarea rows="5" id="description" v-model="enteredDescription"></textarea>
+        <textarea
+          rows="5"
+          id="description"
+          v-model="enteredDescription"
+        ></textarea>
       </div>
       <button>Add Product</button>
     </form>
   </section>
 </template>
 
-<script>
+<script setup>
 import { ref, inject } from 'vue';
 
-export default {
-  setup() {
-    const addProduct = inject('addProduct');
+const addProduct = inject('addProduct');
 
-    const enteredTitle = ref('');
-    const enteredPrice = ref(null);
-    const enteredDescription = ref('');
+const enteredTitle = ref('');
+const enteredPrice = ref(null);
+const enteredDescription = ref('');
 
-    function submitForm() {
-      addProduct({
-        title: enteredTitle,
-        description: enteredDescription,
-        price: enteredPrice,
-      });
-    }
-
-    return {
-      enteredTitle,
-      enteredPrice,
-      enteredDescription,
-      submitForm,
-    };
-  },
+const submitForm = () => {
+  addProduct({
+    title: enteredTitle,
+    description: enteredDescription,
+    price: enteredPrice,
+  });
 };
 </script>
 

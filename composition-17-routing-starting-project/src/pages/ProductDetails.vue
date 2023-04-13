@@ -1,25 +1,17 @@
 <template>
   <section>
     <h2>{{ title }}</h2>
-    <h3>${{ price}}</h3>
-    <p>{{ description}}</p>
+    <h3>${{ price }}</h3>
+    <p>{{ description }}</p>
   </section>
 </template>
 
-<script>
+<script setup>
 import { ref } from 'vue';
-
-export default {
-  setup() {
-    const title = ref('');
-    const price = ref(null);
-    const description = ref('');
-
-    return { title, price, description };
-  },
-};
+const title = ref('');
+const price = ref(null);
+const description = ref('');
 </script>
-
 
 <style scoped>
 section {

@@ -12,16 +12,10 @@
   </section>
 </template>
 
-<script>
+<script setup>
 import { inject } from 'vue';
 
-export default {
-  setup() {
-    const loadedProducts = inject('products');
-
-    return { products: loadedProducts };
-  },
-};
+const products = inject('products');
 </script>
 
 <style scoped>
@@ -45,7 +39,8 @@ li {
   padding: 1rem;
 }
 
-h3, h4 {
+h3,
+h4 {
   margin: 0.5rem 0;
 }
 </style>
