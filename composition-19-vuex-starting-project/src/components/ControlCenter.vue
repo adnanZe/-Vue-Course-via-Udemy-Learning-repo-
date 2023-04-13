@@ -3,5 +3,11 @@
 </template>
 
 <script setup>
-const inc = () => {};
+import { useStore } from 'vuex';
+
+const store = useStore();
+
+const inc = () => {
+  store.dispatch('increment');
+};
 </script>

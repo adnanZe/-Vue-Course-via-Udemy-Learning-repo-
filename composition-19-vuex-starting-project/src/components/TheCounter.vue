@@ -3,5 +3,10 @@
 </template>
 
 <script setup>
-const counter = 0;
+import { computed } from 'vue';
+import { useStore } from 'vuex';
+
+const store = useStore();
+
+const counter = computed(() => store.getters.counter);
 </script>
