@@ -25,8 +25,10 @@
 
 <script setup>
 import { ref, inject } from 'vue';
+import { useRouter } from 'vue-router';
 
 const addProduct = inject('addProduct');
+const router = useRouter();
 
 const enteredTitle = ref('');
 const enteredPrice = ref(null);
@@ -38,6 +40,7 @@ const submitForm = () => {
     description: enteredDescription,
     price: enteredPrice,
   });
+  router.push('/products');
 };
 </script>
 
