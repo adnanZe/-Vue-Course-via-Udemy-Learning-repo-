@@ -3,14 +3,23 @@
     <h2>{{ title }}</h2>
     <h3>${{ price }}</h3>
     <p>{{ description }}</p>
+    <router-link to="/products/p2">Product 2</router-link>
   </section>
 </template>
 
 <script setup>
-import { ref } from 'vue';
-const title = ref('');
-const price = ref(null);
-const description = ref('');
+import { defineProps, inject, computed } from 'vue';
+
+const props = defineProps(['pid']);
+const products = inject('products');
+
+const selectedProduct = computed(() =>
+  products.value.find((product) => product.id === props.pid)
+);
+
+const title = computed(() => selectedProduct.value.title);
+const price = computed(() => selectedProduct.value.price);
+const description = computed(() => selectedProduct.value.description);
 </script>
 
 <style scoped>
