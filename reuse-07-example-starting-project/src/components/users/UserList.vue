@@ -26,15 +26,17 @@
 </template>
 
 <script setup>
-import { ref, computed, defineProps, defineEmits } from 'vue';
+import { ref, computed, defineProps, defineEmits, toRefs } from 'vue';
 import UserItem from './UserItem.vue';
 import { useSearch } from '../../hooks/search';
 
 const props = defineProps(['users']);
 defineEmits(['list-projects']);
 
+const { users } = toRefs(props);
+
 const { enteredSearchTerm, availableItems, updateSearch } = useSearch(
-  props.users,
+  users,
   'fullName'
 );
 

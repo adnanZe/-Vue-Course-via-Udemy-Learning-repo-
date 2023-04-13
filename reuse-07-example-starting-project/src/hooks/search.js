@@ -6,13 +6,12 @@ export const useSearch = (items, searchProp) => {
 
   const availableItems = computed(() => {
     let filteredItems = [];
-    console.log(activeSearchTerm.value);
     if (activeSearchTerm.value) {
-      filteredItems = items.filter((item) =>
-        item[searchProp].toLowerCase().includes(activeSearchTerm.value)
+      filteredItems = items.value.filter((item) =>
+        item[searchProp].includes(activeSearchTerm.value)
       );
-    } else if (items) {
-      filteredItems = items;
+    } else if (items.value) {
+      filteredItems = items.value;
     }
 
     return filteredItems;
