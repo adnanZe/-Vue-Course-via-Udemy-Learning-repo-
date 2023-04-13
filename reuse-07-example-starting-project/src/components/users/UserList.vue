@@ -15,7 +15,7 @@
     </div>
     <ul>
       <user-item
-        v-for="user in displayedUsers"
+        v-for="user in displayedItems"
         :key="user.id"
         :user-name="user.fullName"
         :id="user.id"
@@ -26,9 +26,10 @@
 </template>
 
 <script setup>
-import { ref, computed, defineProps, defineEmits, toRefs } from 'vue';
+import { defineProps, defineEmits, toRefs } from 'vue';
 import UserItem from './UserItem.vue';
 import { useSearch } from '../../hooks/search';
+import { useSort } from '../../hooks/sort';
 
 const props = defineProps(['users']);
 defineEmits(['list-projects']);
@@ -40,25 +41,7 @@ const { enteredSearchTerm, availableItems, updateSearch } = useSearch(
   'fullName'
 );
 
-const sorting = ref(null);
-const displayedUsers = computed(function () {
-  if (!sorting.value) {
-    return availableItems.value;
-  }
-  return availableItems.value.slice().sort((u1, u2) => {
-    if (sorting.value === 'asc' && u1.fullName > u2.fullName) {
-      return 1;
-    } else if (sorting.value === 'asc') {
-      return -1;
-    } else if (sorting.value === 'desc' && u1.fullName > u2.fullName) {
-      return -1;
-    } else {
-      return 1;
-    }
-  });
-});
-
-const sort = (mode) => (sorting.value = mode);
+const { sorting, displayedItems, sort } = useSort(availableItems, 'fullName');
 </script>
 
 <style scoped>
