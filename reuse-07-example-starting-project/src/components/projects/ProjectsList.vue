@@ -37,10 +37,10 @@ const { enteredSearchTerm, availableItems, updateSearch } = useSearch(
 );
 
 const hasProjects = computed(
-  () => projects.value && availableItems.value.length > 0
+  () => user.value.projects && availableItems.value.length > 0
 );
 
-watch(user, () => (enteredSearchTerm.value = ''));
+watch(user, () => updateSearch(''));
 </script>
 
 <style scoped>
