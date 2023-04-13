@@ -9,11 +9,8 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { useAlert } from '../hooks/alert';
 import UserAlert from './UserAlert.vue';
 
-const alertIsVisible = ref(false);
-
-const showAlert = () => (alertIsVisible.value = true);
-const hideAlert = () => (alertIsVisible.value = false);
+const [alertIsVisible, showAlert, hideAlert] = useAlert();
 </script>
